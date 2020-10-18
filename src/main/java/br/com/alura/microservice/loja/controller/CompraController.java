@@ -9,23 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.alura.microservice.loja.dto.CompraDTO;
+import br.com.alura.microservice.loja.dto.TestKafkaDTO;
 import br.com.alura.microservice.loja.model.Compra;
 import br.com.alura.microservice.loja.service.CompraService;
+import br.com.alura.microservice.loja.service.KafkaDispatcher;
 
 @RestController
 @RequestMapping("/compra")
 public class CompraController {
-	
+
 	@Autowired
 	private CompraService compraService;
+
+	@Autowired
+	private KafkaDispatcher kafkaDispatcher;
 
 	@PostMapping
 	public Compra realizaCompra(@RequestBody CompraDTO compra) {
 		return compraService.realizaCompra(compra);
 	}
-	
+
 	@GetMapping("/{id}")
 	public Compra getById(@PathVariable Long id) {
 		return compraService.getById(id);
+	}
+
+	@PostMapping(value = "/kafka")
+	public void realizaCompra(@RequestBody TestKafkaDTO compra) {
+		kafkaDispatcher.send(compra);
 	}
 }

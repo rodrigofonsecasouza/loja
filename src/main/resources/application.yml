@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: loja
+order:
+  topic: ordertopic
 eureka:
   client:
     register-with-eureka: true
