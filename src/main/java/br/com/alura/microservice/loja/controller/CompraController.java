@@ -39,8 +39,8 @@ public class CompraController {
 	}
 
 	@PostMapping(value = "/kafka")
-	public void realizaCompra(@RequestBody TestKafkaDTO compra) {
-		kafkaDispatcher.send(compra);
+	public void realizaCompraKafka(@RequestBody TestKafkaDTO compra) {
+		//kafkaDispatcher.send(compra);
 	}
 
 	@GetMapping(value = "/cor")
