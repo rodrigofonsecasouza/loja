@@ -1,6 +1,7 @@
 package br.com.alura.microservice.loja.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,9 @@ public class CompraController {
 	@Autowired
 	private KafkaDispatcher kafkaDispatcher;
 
+	@Value("${cor}")
+	private String cor;
+
 	@PostMapping
 	public Compra realizaCompra(@RequestBody CompraDTO compra) {
 		return compraService.realizaCompra(compra);
@@ -37,5 +41,10 @@ public class CompraController {
 	@PostMapping(value = "/kafka")
 	public void realizaCompra(@RequestBody TestKafkaDTO compra) {
 		kafkaDispatcher.send(compra);
+	}
+
+	@GetMapping(value = "/cor")
+	public String getCor() {
+		return cor;
 	}
 }
