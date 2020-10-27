@@ -1,4 +1,4 @@
-package br.com.alura.microservice.loja;
+package br.com.alura.microservice.loja.config;
 
 import java.util.HashMap;
 import java.util.Map;

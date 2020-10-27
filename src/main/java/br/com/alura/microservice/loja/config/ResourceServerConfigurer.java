@@ -1,4 +1,4 @@
-package br.com.alura.microservice.loja;
+package br.com.alura.microservice.loja.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

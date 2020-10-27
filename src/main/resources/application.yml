@@ -3,6 +3,23 @@ server:
 spring:
   application:
     name: loja
+  quartz: 
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org.quartz.scheduler.instanceName: quartz-demo-app
+      org.quartz.scheduler.instanceId: AUTO
+      org.quartz.scheduler.instanceIdGenerator.class: br.com.alura.microservice.loja.scheduler.CustomQuartzInstanceIdGenerator
+      org.quartz.threadPool.threadCount: 20
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      org.quartz.jobStore.useProperties: true
+      org.quartz.jobStore.misfireThreshold: 60000
+      org.quartz.jobStore.tablePrefix: qrtz_
+      org.quartz.jobStore.isClustered: true
+      org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
+      org.quartz.plugin.shutdownHook.cleanShutdown: true
 order:
   topic: ordertopic
 eureka:
